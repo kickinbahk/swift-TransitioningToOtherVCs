@@ -9,24 +9,19 @@
 import UIKit
 
 class NavVC: UIViewController {
-  var checklist = ["Subclas UITableViewDatasource",
-                   "Create a prototype cell",
-                   "Set a unique reuse identifier",
-                   "Wire the tableView to the ViewController",
-                   "Add number of rows",
-                   "Add cellForRowAt"]
+  var emojis = allEmojis
   
 }
 
 extension NavVC: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return checklist.count
+    return emojis.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     
-    cell.textLabel?.text = checklist[indexPath.row]
+    cell.textLabel?.text = emojis[indexPath.row]
     
     return cell
   }
